@@ -12,19 +12,18 @@ spec:
     ports:
       - containerPort: 80
         name: http-web-svc
-
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: Nodeport
+  type: NodePort
   selector:
     environment: dev
     app: frontend
   ports:
   - name: name-of-service-port
     protocol: TCP
-    port: 80
-    targetPort: http-web-svc
+    port: 80 # this port belongs to service
+    targetPort: http-web-svc # this port belongs to container
